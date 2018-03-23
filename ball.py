@@ -24,7 +24,7 @@ pts = deque(maxlen=args["buffer"])
 # if a video path was not supplied, grab the reference
 # to the webcam
 if not args.get("video", False):
-	camera = cv2.VideoCapture(0)
+	camera = cv2.VideoCapture(1)
 
 # otherwise, grab a reference to the video file
 else:
@@ -59,29 +59,6 @@ while True:
 	# (x, y) center of the ball
 	cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL,
 		cv2.CHAIN_APPROX_SIMPLE)[-2]
-
-
-import sys
-import time
-import RPi.GPIO as GPIO
-
-# initialize GPIO and variables
-redLed = int(sys.argv[1])
-freq = int(sys.argv[2])
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(redLed, GPIO.OUT)
-GPIO.setwarnings(False)
-
-print("\n [INFO] Blinking LED (5 times) connected at GPIO {0} at every {1} second(s)".format(redLed, freq))
-for i in range(5):
-    GPIO.output(redLed, GPIO.LOW)
-    time.sleep(freq)
-    GPIO.output(redLed, GPIO.HIGH)
-    time.sleep(freq)
-
-# do a bit of cleanup
-print("\n [INFO] Exiting Program and cleanup stuff \n")
-GPIO.cleanup()
 	center = None
 
 	# only proceed if at least one contour was found
