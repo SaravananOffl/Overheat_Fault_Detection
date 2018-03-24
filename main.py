@@ -7,6 +7,9 @@ import imutils
 import cv2
 
 # construct the argument parse and parse the arguments
+camera_class_obj = camera_class()
+    # save_webcam('output.avi', 30.0,mirror=True)
+
 ap = argparse.ArgumentParser()
 ap.add_argument("-v", "--video",
 	help="path to the (optional) video file")

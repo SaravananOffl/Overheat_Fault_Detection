@@ -13,7 +13,9 @@ Higher_range = np.array([44,255,255], dtype=np.uint8)
 
 
 mask = cv2.inRange(hsv, Lower_range,Higher_range)
+
 cv2.imshow('mask',mask)
+
 cv2.imshow('image', img)
 
 while(1):
